@@ -1,0 +1,48 @@
+'8: Wieloch (303080), Rybska (401417), Sukiennik (401060)
+@startuml
+class Product {
++ name: str
++ price: float
++ __init__(self,name:str,price:float)
+- _is_right_product_name(self)
+}
+class ListServer{
++ products: List[Product]
++ __init__(self,products: List[Product],*args,**kwargs)
+-_get_entries_inside(self, n_letters: int = 1): List[Product]
+}
+class MapServer{
++ products: Dict[Product]
++ __init__(self,products: List[Product],*args,**kwargs)
+- _get_entries_inside(self, n_letters: int = 1): List[Product]
+}
+abstract class Server{
++ {static} n_max_returned_entries: int = 3
++ __init__(self,*args,**kwargs)
++ get_entries(self, n_letters: int = 1): Union[List[Product], TooManyProductsFoundError]
+- {abstract} _get_entries_inside(self, n_letters: int = 1): List[Product]
+}
+class Client{
++ server: Server
++__init__(self, server: ServerType)
++ get_total_price(self, n_letters: Optional[int]): Optional[float]
+}
+class TooManyProductsFoundError{
+}
+class ServerError {
+}
+class Exception {
+}
+class ValueError {
+}
+ListServer *-- Product
+MapServer *-- Product
+Server <|-- ListServer
+Server <|-- MapServer
+Client o-- Server
+ServerError <|--TooManyProductsFoundError
+Exception <|-- ServerError
+Server ..> TooManyProductsFoundError : <<throws>>
+Product ..> ValueError : <<throws>>
+@enduml
+'8: Wieloch (303080), Rybska (401417), Sukiennik (401060)
