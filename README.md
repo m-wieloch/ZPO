@@ -5,3 +5,7 @@
 - [Sorting](Labs/sort.py)
 - [Graphs](Labs/graphs.py)
 - [Graphs_v2](Labs/graphs_2.py)
+
+## Projekty
+- TSP
+- Servers
